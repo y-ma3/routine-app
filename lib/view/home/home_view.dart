@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:routine_app/view/input_form/input_form_view.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -15,7 +16,10 @@ class HomeView extends StatelessWidget {
             ),
             floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                    // Add your action here
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const InputForm()),
+                    );
                 },
                 child: const Icon(Icons.add),
             ),

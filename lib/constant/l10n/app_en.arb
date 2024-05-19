@@ -1,5 +1,6 @@
 {
   "@@locale": "en",
   "navigationBarHome": "Home",
-  "navigationBarSetting": "Setting"
+  "navigationBarSetting": "Setting",
+  "inputFormTitle": "Add new task"
 }
