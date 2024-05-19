@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:routine_app/view/home/home_view.dart';
 import 'package:routine_app/view/setting/setting_view.dart';
 
@@ -23,15 +24,15 @@ class _NavigationState extends State<Navigation> {
         },
         indicatorColor: Colors.amber,
         selectedIndex: currentPageIndex,
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: 'ホーム',
+            selectedIcon: const Icon(Icons.home),
+            icon: const Icon(Icons.home_outlined),
+            label: AppLocalizations.of(context)!.navigationBarHome,
           ),
           NavigationDestination(
-            icon: Icon(Icons.settings),
-            label: '設定',
+            icon: const Icon(Icons.settings),
+            label: AppLocalizations.of(context)!.navigationBarSetting,
           ),
         ],
       ),
