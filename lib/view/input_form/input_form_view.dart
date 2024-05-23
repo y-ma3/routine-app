@@ -153,6 +153,7 @@ class InputFormState extends State<InputForm> {
             const Padding(
               padding: EdgeInsets.all(10),
             ),
+            // 通知の設定
             SwitchListTile(
               title: const Text('通知'),
               secondary: const Icon(Icons.notifications_none),
@@ -162,6 +163,7 @@ class InputFormState extends State<InputForm> {
             const Padding(
               padding: EdgeInsets.all(10),
             ),
+            // メモを入力するフィールド
             SizedBox(
               width: 350,
               child: TextField(
@@ -175,6 +177,7 @@ class InputFormState extends State<InputForm> {
             const Padding(
               padding: EdgeInsets.all(10),
             ),
+            // 新規タスクを追加するボタン
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
