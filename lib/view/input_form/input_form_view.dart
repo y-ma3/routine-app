@@ -12,7 +12,8 @@ class InputForm extends StatefulWidget {
 
 class InputFormState extends State<InputForm> {
   String selectedEmoji = "✅";
-  EmojiData? emojiData;
+  TimeOfDay startTime = TimeOfDay.now();
+  TimeOfDay endTime = TimeOfDay.now();
 
   @override
   Widget build(BuildContext context) {
@@ -66,6 +67,75 @@ class InputFormState extends State<InputForm> {
                 const SizedBox(
                   width: 250,
                   child: MyTextField(),
+                ),
+              ],
+            ),
+            const Padding(padding: EdgeInsets.all(10)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // タスクの開始時間を設定する
+                ElevatedButton(
+                  onPressed: () async {
+                    TimeOfDay? selectedTime;
+                    do {
+                      selectedTime = await showTimePicker(
+                        context: context,
+                        initialTime: startTime,
+                      );
+                      if (selectedTime == null) {
+                        // ユーザーがキャンセルボタンを押した場合
+                        return;
+                      } else if (selectedTime.hour > endTime.hour ||
+                          (selectedTime.hour == endTime.hour &&
+                              selectedTime.minute > endTime.minute)) {
+                        // 選択された時間が終了時間より後である場合
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('開始時間は終了時間より前に設定してください。')),
+                        );
+                      }
+                    } while (selectedTime.hour > endTime.hour ||
+                        (selectedTime.hour == endTime.hour &&
+                            selectedTime.minute > endTime.minute));
+                    setState(() {
+                      startTime = selectedTime!;
+                    });
+                  },
+                  child: Text('開始時間: ${startTime.format(context)}'),
+                ),
+                const Padding(padding: EdgeInsets.all(10)),
+                // タスクの終了時間を設定する
+                ElevatedButton(
+                  onPressed: () async {
+                    TimeOfDay? selectedTime;
+                    do {
+                      selectedTime = await showTimePicker(
+                        context: context,
+                        initialTime: endTime,
+                      );
+                      if (selectedTime == null) {
+                        // ユーザーがキャンセルボタンを押した場合
+                        return;
+                      } else if (selectedTime.hour < startTime.hour ||
+                          (selectedTime.hour == startTime.hour &&
+                              selectedTime.minute < startTime.minute)) {
+                        // 選択された時間が開始時間より前である場合
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('終了時間は開始時間より後に設定してください。')),
+                        );
+                      }
+                    } while (selectedTime.hour < startTime.hour ||
+                        (selectedTime.hour == startTime.hour &&
+                            selectedTime.minute < startTime.minute));
+                    setState(() {
+                      endTime = selectedTime!;
+                    });
+                  },
+                  child: Text('終了時間: ${endTime.format(context)}'),
                 ),
               ],
             ),
