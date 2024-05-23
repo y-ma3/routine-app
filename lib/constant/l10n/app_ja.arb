@@ -1,5 +1,6 @@
 {
   "@@locale": "ja",
   "navigationBarHome": "ホーム",
-  "navigationBarSetting": "設定"
+  "navigationBarSetting": "設定",
+  "inputFormTitle": "新規タスク追加"
 }
