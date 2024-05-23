@@ -15,6 +15,7 @@ class InputFormState extends State<InputForm> {
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
   bool _value = true;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class InputFormState extends State<InputForm> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // 絵文字選択ボタン
                 ElevatedButton(
                     onPressed: () {
                       showModalBottomSheet(
@@ -65,6 +67,7 @@ class InputFormState extends State<InputForm> {
                 const Padding(
                   padding: EdgeInsets.all(10),
                 ),
+                // タスク名を入力するフィールド
                 const SizedBox(
                   width: 250,
                   child: MyTextField(),
@@ -149,6 +152,20 @@ class InputFormState extends State<InputForm> {
               secondary: const Icon(Icons.notifications_none),
               value: _value,
               onChanged: (value) => setState(() => _value = value),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+            ),
+            SizedBox(
+              width: 350,
+              child: TextField(
+                controller: _controller,
+                decoration: const InputDecoration(
+                  labelText: 'Note',
+                  border: OutlineInputBorder(),
+                ),
+                maxLines: null,
+              ),
             ),
           ],
         ),
