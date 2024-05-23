@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:routine_app/component/text_field.dart';
 import 'package:emoji_selector/emoji_selector.dart';
 
 class InputForm extends StatefulWidget {
@@ -12,10 +11,11 @@ class InputForm extends StatefulWidget {
 
 class InputFormState extends State<InputForm> {
   String selectedEmoji = "✅";
+  final TextEditingController _taskNameController = TextEditingController();
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
   bool _value = true;
-  final TextEditingController _controller = TextEditingController();
+  final TextEditingController _noteController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,9 +68,15 @@ class InputFormState extends State<InputForm> {
                   padding: EdgeInsets.all(10),
                 ),
                 // タスク名を入力するフィールド
-                const SizedBox(
+                SizedBox(
                   width: 250,
-                  child: MyTextField(),
+                  child: TextField(
+                    controller: _taskNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'New Task Name',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -159,12 +165,11 @@ class InputFormState extends State<InputForm> {
             SizedBox(
               width: 350,
               child: TextField(
-                controller: _controller,
+                controller: _noteController,
                 decoration: const InputDecoration(
                   labelText: 'Note',
                   border: OutlineInputBorder(),
                 ),
-                maxLines: null,
               ),
             ),
             const Padding(
