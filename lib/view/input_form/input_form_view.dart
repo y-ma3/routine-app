@@ -14,6 +14,7 @@ class InputFormState extends State<InputForm> {
   String selectedEmoji = "✅";
   TimeOfDay startTime = TimeOfDay.now();
   TimeOfDay endTime = TimeOfDay.now();
+  bool _value = true;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +126,8 @@ class InputFormState extends State<InputForm> {
                         // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                              content: Text('終了時間は開始時間より後に設定してください。')),
+                            content: Text('終了時間は開始時間より後に設定してください。'),
+                          ),
                         );
                       }
                     } while (selectedTime.hour < startTime.hour ||
@@ -138,6 +140,15 @@ class InputFormState extends State<InputForm> {
                   child: Text('終了時間: ${endTime.format(context)}'),
                 ),
               ],
+            ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+            ),
+            SwitchListTile(
+              title: const Text('通知'),
+              secondary: const Icon(Icons.notifications_none),
+              value: _value,
+              onChanged: (value) => setState(() => _value = value),
             ),
           ],
         ),
