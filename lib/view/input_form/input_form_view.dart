@@ -167,6 +167,22 @@ class InputFormState extends State<InputForm> {
                 maxLines: null,
               ),
             ),
+            const Padding(
+              padding: EdgeInsets.all(10),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.blue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('新規タスクを追加'),
+            ),
           ],
         ),
       ),
