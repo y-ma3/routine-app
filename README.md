@@ -6,8 +6,7 @@
 ### 提供しているOS
 | OS | バージョン |
 | ------ | ------ |
-| iOS | TBD |
-| watchOS | TBD |
+| iOS | 18.0以降 |
 
 ## アプリの仕様
 TBD
@@ -17,9 +16,22 @@ TBD
 | ------ | ------ |
 | macOS Sequoia | 15.0.1 |
 | Xcode | 16.0 |
-| Swift | TBD |
+| Swift | 5 |
 
 ### セットアップ方法
-1. こちらのリポジトリをクローン
-2. 実行
-ライブラリは全て`Swift Package Manager`を用いて導入しているため、`.xcodeproj`を開くと自動でダウンロードされます。
+1. こちらのリポジトリをクローンするだけ。
+
+※ライブラリは全て`Swift Package Manager`を用いて導入しているため、`.xcodeproj`を開くと自動でダウンロードされます。
+
+### 各種実行方法
+1. ビルド
+
+`command`+`B`または、アプリメニューの`Product`→`Build`
+
+1. 実行
+
+`command`+`R`または、アプリメニューの`Product`→`Run`
+
+2. テスト
+
+`command`+`U`または、アプリメニューの`Product`→`Test`
